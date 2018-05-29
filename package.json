@@ -1,0 +1,23 @@
+{
+  "name": "taoke",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dj940212/taoke.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dj940212/taoke/issues"
+  },
+  "homepage": "https://github.com/dj940212/taoke#readme",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-static": "^4.0.3"
+  }
+}
