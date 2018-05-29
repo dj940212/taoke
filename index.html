@@ -139,11 +139,11 @@
 		}
 		.inviteCode {
 			text-align: center;
-			margin-top: 20px;
+			margin-top: 10px;
 		}
 		.code {
-			font-size: 13px;
-			padding: 10px 10px;
+			font-size: 12px;
+			padding: 7px 7px;
 			border: 1px dashed #f54d23;
 			background: #fff;
 		}
@@ -179,8 +179,8 @@
 			<button id="copy" type="button" data-clipboard-text="" class="itemCopy" style="display:none;">一键复制</button>
 		</div>
 		<div class="inviteCode">
-			<div class="code">复制这段文本$daf345ksf$发送到【三句多】即可增加一次饿了么大红包领取机会</div>
-			<button class="codeCopy">复制邀请码</button>
+			<div class="code">复制框内整段文本$0w3kp27siax$发送到【三句多】即可增加一次饿了么大红包领取机会</div>
+			<button id="codeCopy" class="codeCopy" data-clipboard-text="">复制邀请码</button>
 		</div>
 		<script type="text/javascript" src="js/clipboard.min.js"></script>
 		<script>
@@ -210,14 +210,16 @@
 				$('#img').attr('src', image);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
+				$('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
 				$('#taokey').text('￥' + taowords + '￥');
 			})
 
 
-			//复制文本
+			//复制淘口令
 			var clipboard = new Clipboard('.itemCopy');
 			clipboard.on('success',
 				function(e) {
+					console.log(e)
 					if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
 						e.trigger.innerHTML = "复制成功，打开淘宝会自动弹出口令";
 						e.trigger.style.backgroundColor = "#9ED29E";
@@ -235,13 +237,45 @@
 					}
 				});
 
+
 			clipboard.on('error',
 				function(e) {
 					e.trigger.innerHTML = "复制失败";
 					e.trigger.style.backgroundColor = "#8f8f8f";
 					e.trigger.style.borderColor = "#8f8f8f";
+				}
+			);
+
+			//复制邀请码
+			var clipboardCode = new Clipboard('.codeCopy');
+			clipboardCode.on('success',
+				function(e) {
+					console.log(e)
+					if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
+						e.trigger.innerHTML = "复制成功，发送到公众号【三句多】即可";
+						e.trigger.style.backgroundColor = "#9ED29E";
+						e.trigger.style.borderColor = "#9ED29E";
+						//e.clearSelection();
+						e.trigger.disabled = true;
+						//2秒后按钮恢复原状
+						setTimeout(function() {
+								e.trigger.innerHTML = "复制邀请码";
+								e.trigger.style.backgroundColor = "#f54d23";
+								e.trigger.style.borderColor = "#f54d23";
+								e.trigger.disabled = false;
+							},
+							4000);
+					}
 				});
 
+
+			clipboardCode.on('error',
+				function(e) {
+					e.trigger.innerHTML = "复制失败";
+					e.trigger.style.backgroundColor = "#8f8f8f";
+					e.trigger.style.borderColor = "#8f8f8f";
+				}
+			);
 			$(function() {
 
 				//UA判断
