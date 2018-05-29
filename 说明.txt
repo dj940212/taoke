@@ -1,0 +1,10 @@
+﻿将本文件夹里面的所有文件复制放到软件根目录即可
+淘口令参数taowords
+返利链接参数url
+商品图片参数image
+
+
+
+
+如域名:www.ce.com
+软件定义域名就提交  http://www.ce.com/api.html?taowords={淘口令}&url={返利链接}&image={图片地址}
