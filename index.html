@@ -157,6 +157,11 @@
 		    border-radius: 16px;
 		    color: #fff;
 		}
+		.weixin {
+			width: 100%;
+			height: auto;
+			box-shadow: 0px 3px 12px rgba(21, 0, 71, 0.16);
+		}
 	</style>
 </head>
 
@@ -181,6 +186,7 @@
 		<div class="inviteCode">
 			<div class="code">复制框内整段文本$0w3kp27siax$发送到【三句多】即可增加一次饿了么大红包领取机会</div>
 			<button id="codeCopy" class="codeCopy" data-clipboard-text="">复制邀请码</button>
+			<img id="weixinImg" class="weixin" src="" alt="">
 		</div>
 		<script type="text/javascript" src="js/clipboard.min.js"></script>
 		<script>
@@ -252,9 +258,10 @@
 				function(e) {
 					console.log(e)
 					if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
-						e.trigger.innerHTML = "复制成功，发送到公众号【三句多】即可";
+						e.trigger.innerHTML = "复制成功，长按二维码进入公众号粘贴即可";
 						e.trigger.style.backgroundColor = "#9ED29E";
 						e.trigger.style.borderColor = "#9ED29E";
+						$('#weixinImg').attr('src', 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg');
 						//e.clearSelection();
 						e.trigger.disabled = true;
 						//2秒后按钮恢复原状
@@ -264,7 +271,7 @@
 								e.trigger.style.borderColor = "#f54d23";
 								e.trigger.disabled = false;
 							},
-							4000);
+							6000);
 					}
 				});
 
