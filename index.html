@@ -258,11 +258,12 @@
 				function(e) {
 					console.log(e)
 					if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
-						e.trigger.innerHTML = "复制成功，长按二维码进入公众号粘贴即可";
+						e.trigger.innerHTML = "复制成功,长按二维码进入公众号粘贴即可";
 						e.trigger.style.backgroundColor = "#9ED29E";
 						e.trigger.style.borderColor = "#9ED29E";
 						$('#weixinImg').attr('src', 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg');
 						//e.clearSelection();
+						window.scrollTo(100,500);
 						e.trigger.disabled = true;
 						//2秒后按钮恢复原状
 						setTimeout(function() {
@@ -271,7 +272,7 @@
 								e.trigger.style.borderColor = "#f54d23";
 								e.trigger.disabled = false;
 							},
-							6000);
+							8000);
 					}
 				});
 
