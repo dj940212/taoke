@@ -208,9 +208,15 @@
 			}
 
 			function getActcode2() {
-				location.href()
+				var subDomin = ""
+				if(location.href.indexOf("localhost") > -1) {
+					subDomin = "a"
+				}else {
+					subDomin = location.href.split('/')[2].split('.')[0]
+				}
+				console.log("subDomin", subDomin)
 				$.ajax({
-					url:"http://fuli.dingjian.name/actcode2?weixin=A",
+					url:"http://ding.natapp1.cc/actcode2?subDomain=" + subDomin,
 					success:function(result){
 						console.log(result)
 						if(result.err_code !== 0) {
@@ -223,7 +229,7 @@
 			}
 
 			$(function() {
-				// getActcode2()
+				getActcode2()
 				var taowords = getParams('taowords');
 				var url = decodeURIComponent(getParams('url'));
 				var image = decodeURIComponent(getParams('image'));
@@ -231,7 +237,7 @@
 				$('#img').attr('src', image);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
-				$('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
+				// $('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
 				$('#taokey').text('￥' + taowords + '￥');
 			})
 
