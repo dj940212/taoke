@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/dj940212/taoke#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "koa": "^2.5.1",
+    "koa-router": "^7.4.0",
     "koa-static": "^4.0.3"
   }
 }

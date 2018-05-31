@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<title>口令提取</title>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<style>
 		blockquote, body, dd, dir, dl, fieldset, figure, form, h1, h2, h3, h4, h5, h6, hr, input, legend, menu, ol, optgroup, p, pre, tbody, td, textarea, tfoot, th, thead,
 		ul {
@@ -184,11 +183,11 @@
 			<button id="copy" type="button" data-clipboard-text="" class="itemCopy" style="display:none;">一键复制</button>
 		</div>
 		<div class="inviteCode">
-			<div class="code">复制框内整段文本$0w3kp27siax$发送到【三句多】即可增加一次饿了么大红包领取机会</div>
+			<div class="code">复制框内整段文本<span class="actcodeText">$0w3kp27siax$</span>发送到公众号【三句多】即可增加一次饿了么大红包领取机会</div>
 			<button id="codeCopy" class="codeCopy" data-clipboard-text="">复制邀请码</button>
 			<img id="weixinImg" class="weixin" src="" alt="">
 		</div>
-		<script type="text/javascript" src="js/clipboard.min.js"></script>
+		<script type="text/javascript" src="../js/clipboard.min.js"></script>
 		<script>
 			function getParams(paras) {
 				var url = decodeURI(location.href);
@@ -208,7 +207,22 @@
 				}
 			}
 
+			function getActcode2() {
+				$.ajax({
+					url:"http://localhost:3000/actcode2?weixin=" + location.href.split("/")[3],
+					success:function(result){
+						console.log(result)
+						if(result.err_code !== 0) {
+							return $(".actcodeText").text('$获取邀请码失败$');
+						}
+			        	$(".actcodeText").text('$' + result.data.actcode2 + '$');
+						$('#codeCopy').attr('data-clipboard-text', '$' + result.data.actcode2 + '$');
+			    	}
+				})
+			}
+
 			$(function() {
+				getActcode2()
 				var taowords = getParams('taowords');
 				var url = decodeURIComponent(getParams('url'));
 				var image = decodeURIComponent(getParams('image'));
@@ -216,7 +230,6 @@
 				$('#img').attr('src', image);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
-				$('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
 				$('#taokey').text('￥' + taowords + '￥');
 			})
 
@@ -263,8 +276,8 @@
 						e.trigger.style.borderColor = "#9ED29E";
 						$('#weixinImg').attr('src', 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg');
 						//e.clearSelection();
-						window.scrollTo(5000,3000);
 						e.trigger.disabled = true;
+						window.scrollTo(5000,3000);
 						//2秒后按钮恢复原状
 						setTimeout(function() {
 								e.trigger.innerHTML = "复制邀请码";
