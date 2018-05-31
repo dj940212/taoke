@@ -208,8 +208,9 @@
 			}
 
 			function getActcode2() {
+				location.href()
 				$.ajax({
-					url:"http://localhost:3000/actcode2?weixin=A",
+					url:"http://fuli.dingjian.name/actcode2?weixin=A",
 					success:function(result){
 						console.log(result)
 						if(result.err_code !== 0) {
@@ -222,7 +223,7 @@
 			}
 
 			$(function() {
-				getActcode2()
+				// getActcode2()
 				var taowords = getParams('taowords');
 				var url = decodeURIComponent(getParams('url'));
 				var image = decodeURIComponent(getParams('image'));
@@ -230,6 +231,7 @@
 				$('#img').attr('src', image);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
+				$('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
 				$('#taokey').text('￥' + taowords + '￥');
 			})
 
