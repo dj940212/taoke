@@ -169,7 +169,6 @@
 
 	<div class="beatMain">
 		<div class="imgContainer">
-			<!-- <img id="img" src="http://img.alicdn.com/bao/uploaded/i2/2981597322/TB1NGcDSFXXXXbZXFXXXXXXXXXX_!!0-item_pic.jpg"> -->
 			<img id="img" src="" alt="">
 		</div>
 		<!-- <div>
@@ -193,6 +192,12 @@
 		</div>
 		<script type="text/javascript" src="./js/clipboard.min.js"></script>
 		<script>
+			var sanjuduo = ['a', 'e', 'yixing', 'tiantian']
+			var jiyou = ['f', 'fanli']
+			var emama = ['i', 'mao']
+			var subDomin = ""
+
+
 			function getParams(paras) {
 				var url = decodeURI(location.href);
 				// var url = location.href;
@@ -212,15 +217,28 @@
 			}
 
 			function getActcode2() {
-				var subDomin = ""
+				var url = ""
+				
+
 				if(location.href.indexOf("localhost") > -1) {
 					subDomin = "a"
 				}else {
 					subDomin = location.href.split('/')[2].split('.')[0]
 				}
+
+				if (sanjuduo.indexOf(subDomin) > -1) {
+					url = "http://fuli.dingjian.name/actcode2"
+				}
+				if (jiyou.indexOf(subDomin) > -1) {
+					url = "http://jiyou.dingjian.name/actcode2"
+				}
+				if (emama.indexOf(subDomin) > -1) {
+					url = "http://emama2.laosunwang.cn/actcode2"
+				}
+
 				console.log("subDomin", subDomin)
 				$.ajax({
-					url:"http://fuli.dingjian.name/actcode2?subDomain=" + subDomin,
+					url:url+"?subDomain=" + subDomin,
 					success:function(result){
 						console.log(result)
 						if(result.err_code !== 0) {
@@ -286,7 +304,18 @@
 						e.trigger.innerHTML = "复制成功,长按二维码进入公众号粘贴即可";
 						e.trigger.style.backgroundColor = "#9ED29E";
 						e.trigger.style.borderColor = "#9ED29E";
-						$('#weixinImg').attr('src', 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg');
+
+						if (sanjuduo.indexOf(subDomin) > -1) {
+							$('#weixinImg').attr('src', 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg');
+						}
+						if (jiyou.indexOf(subDomin) > -1) {
+							$('#weixinImg').attr('src', 'http://image.dingjian.name/qrcode_for_gh_5bab06c4b650_258.jpg');
+						}
+						if (emama.indexOf(subDomin) > -1) {
+							$('#weixinImg').attr('src', 'http://image.dingjian.name/WechatIMG1207.jpeg')
+						}
+
+						
 						//e.clearSelection();
 						e.trigger.disabled = true;
 						window.scrollTo(5000,3000);
