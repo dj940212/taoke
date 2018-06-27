@@ -169,7 +169,7 @@
 
 	<div class="beatMain">
 		<div class="imgContainer">
-			<img id="img" src="" alt="">
+			<img id="img" src="http://image.dingjian.name/shopping.jpeg" alt="">
 		</div>
 		<!-- <div>
 			点击下面按钮，复制框内文字
@@ -180,7 +180,7 @@
 		</p>
 		<div class="beatWord">
 			<fieldset>
-				<legend id="copy_tip">点击下面按钮>打开手淘>进入自动弹出的商品>完成购买</legend>
+				<legend id="copy_tip">点击按钮>打开手淘>进入弹出的商品>完成购买</legend>
 				<p id="itemWord" class="itemWord" style="font-size: 12px;">复制框内整段文字，打开「手淘」即可「领取优惠券」并购买<span id="taokey"></span></p>
 			</fieldset>
 			<button id="copy" type="button" data-clipboard-text="" class="itemCopy" style="display:none;">点击复制,打开淘宝优惠购物</button>
@@ -256,7 +256,7 @@
 				var url = decodeURIComponent(getParams('url'));
 				var image = decodeURIComponent(getParams('image'));
 
-				$('#img').attr('src', image);
+				// $('#img').attr('src', image);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
 				// $('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
