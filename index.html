@@ -138,7 +138,6 @@
 			color: #fff;
 		}
 		.inviteCode {
-			display: none;
 			text-align: center;
 			margin-top: 10px;
 		}
@@ -172,9 +171,6 @@
 		<div class="imgContainer">
 			<img id="img" src="http://image.dingjian.name/shopping.jpeg" alt="">
 		</div>
-		<!-- <div>
-			点击下面按钮，复制框内文字
-		</div> -->
 		<p class="itemContent">
 			<strong class="itemPrice"></strong>
 			<div id="item_title" style="font-weight: 700;font-size: 14px;margin-bottom: 5px;"></div>
@@ -188,16 +184,35 @@
 		</div>
 		<div class="inviteCode">
 			<div class="code">复制框内整段文本<span class="actcodeText">$0w3kp27siax$</span>发送到【公众号】即可增加一次饿了么大红包领取机会</div>
-			<button id="codeCopy" class="codeCopy" data-clipboard-text="">复制邀请码</button>
+			<button id="codeCopy" class="codeCopy" data-clipboard-text="">点击复制激活码</button>
 			<img id="weixinImg" class="weixin" src="" alt="">
 		</div>
 		<script type="text/javascript" src="./js/clipboard.min.js"></script>
 		<script>
-			var sanjuduo = ['a', 'e', 'yixing', 'tiantian']
-			var jiyou = ['f', 'fanli']
-			var emama = ['i', 'mao']
-			var subDomin = ""
+			var arr = [{
+				name: "sanjvduo",
+				weixin: ['a', 'e', 'yixing', 'tiantian'],
+				url: "http://fuli.dingjian.name/actcode2",
+				headUrl: 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg'
+			},{
+				name: "jiyou",
+				weixin: ['f', 'fanli'],
+				url: "http://jiyou.dingjian.name/actcode2",
+				headUrl: 'http://image.dingjian.name/qrcode_for_gh_5bab06c4b650_258.jpg'
+			},{
+				name: "emama",
+				weixin: ['i', 'mao'],
+				url: "http://emama2.dingjian.name/actcode2",
+				headUrl: 'http://image.dingjian.name/WechatIMG1207.jpeg'
+			},{
+				name: "ebaba",
+				weixin: [],
+				url: "http://super.dingjian.name/actcode2",
+			}]
 
+			var subDomin = ""
+			var url = ""
+			var headUrl = ""
 
 			function getParams(paras) {
 				var url = decodeURI(location.href);
@@ -218,26 +233,19 @@
 			}
 
 			function getActcode2() {
-				var url = ""
-				
-
 				if(location.href.indexOf("localhost") > -1) {
 					subDomin = "a"
 				}else {
 					subDomin = location.href.split('/')[2].split('.')[0]
 				}
 
-				if (sanjuduo.indexOf(subDomin) > -1) {
-					url = "http://fuli.dingjian.name/actcode2"
-				}
-				if (jiyou.indexOf(subDomin) > -1) {
-					url = "http://jiyou.dingjian.name/actcode2"
-				}
-				if (emama.indexOf(subDomin) > -1) {
-					url = "http://emama2.laosunwang.cn/actcode2"
-				}
+				arr.forEach((item,index) => {
+					if (item.weixin.indexOf(subDomin) > -1) {
+						url = item.url
+						headUrl = item.headUrl
+					}
+				})
 
-				console.log("subDomin", subDomin)
 				$.ajax({
 					url:url+"?subDomain=" + subDomin,
 					success:function(result){
@@ -257,7 +265,7 @@
 				var url = decodeURIComponent(getParams('url'));
 				var image = decodeURIComponent(getParams('image'));
 
-				// $('#img').attr('src', image);
+				$('#img').attr('src', image);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
 				// $('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
@@ -306,16 +314,7 @@
 						e.trigger.style.backgroundColor = "#9ED29E";
 						e.trigger.style.borderColor = "#9ED29E";
 
-						if (sanjuduo.indexOf(subDomin) > -1) {
-							$('#weixinImg').attr('src', 'https://i.loli.net/2018/05/30/5b0e1404818b2.jpg');
-						}
-						if (jiyou.indexOf(subDomin) > -1) {
-							$('#weixinImg').attr('src', 'http://image.dingjian.name/qrcode_for_gh_5bab06c4b650_258.jpg');
-						}
-						if (emama.indexOf(subDomin) > -1) {
-							$('#weixinImg').attr('src', 'http://image.dingjian.name/WechatIMG1207.jpeg')
-						}
-
+						$('#weixinImg').attr('src', headUrl);
 						
 						//e.clearSelection();
 						e.trigger.disabled = true;
@@ -368,7 +367,6 @@
 						// window.getSelection().selectAllChildren(word);
 					},
 					false);
-
 			});
 		</script>
 </body>
