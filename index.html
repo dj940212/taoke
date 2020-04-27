@@ -184,13 +184,15 @@
 		</div>
 
 		<div class="inviteCode" style="display: none;">
-			<div class="code">复制框内整段文本<span class="actcodeText">￥IuydbhndFs9￥</span>打开淘宝抢红包，每天可抢三次，最高1111元</div>
+			<div class="code">复制框内整段文本<span class="actcodeText">null</span>打开淘宝抢红包，每天可抢三次，最高1111元</div>
 			<button id="codeCopy" class="codeCopy" data-clipboard-text="">一键复制,抢双十一红包</button>
 			<!-- <img id="weixinImg" class="weixin" src="" alt=""> -->
-		</div>
+        </div>
+        <!-- 
 		<div style="color: #f54d23;margin-top: 10px;font-size: 16px">注意：</div>
 		<div style="color: #f54d23;margin-top: 5px;font-size: 14px">①付费时使用红包可能会导致没有返利</div>
-		<div style="color: #f54d23;margin-top: 5px;font-size: 14px">②如果下单后机器人没有回复付费成功的消息，请手动发送订单号绑定</div>
+        <div style="color: #f54d23;margin-top: 5px;font-size: 14px">②如果下单后机器人没有回复付费成功的消息，请手动发送订单号绑定</div>
+        -->
 		
 		<script type="text/javascript" src="./js/clipboard.min.js"></script>
 		<script>
@@ -223,7 +225,7 @@
 
 				$('#img').attr('src', image);
 				$('#coupons').attr('href', url);
-				$('#copy').attr('data-clipboard-text', '￥' + taowords + '￥');
+				$('#copy').attr('data-clipboard-text', taowords);
 				// $('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
 				$('#taokey').text('￥' + taowords + '￥');
 			})
