@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<title>口令提取</title>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://image.dingjian.name/base64.js"></script>
 	<style>
 		blockquote, body, dd, dir, dl, fieldset, figure, form, h1, h2, h3, h4, h5, h6, hr, input, legend, menu, ol, optgroup, p, pre, tbody, td, textarea, tfoot, th, thead,
 		ul {
@@ -218,12 +219,12 @@
 			}
 
 			$(function() {
-				var taowords = getParams('word');
+				var taowords = getParams('taowords');
 				var url = decodeURIComponent(getParams('url'));
-                var image = decodeURIComponent(getParams('image'));
-                console.log("图片",image)
+                var pic = decodeURIComponent(Base64.decode(getParams('pic')));
+                console.log("图片",pic)
 
-				$('#img').attr('src', image);
+				$('#img').attr('src', pic);
 				$('#coupons').attr('href', url);
 				$('#copy').attr('data-clipboard-text', taowords);
 				// $('#codeCopy').attr('data-clipboard-text', '$' + "0w3kp27siax" + '$');
@@ -267,17 +268,18 @@
 				//UA判断
 				var isShow = 0; //控制是否显示一键复制按钮
 				var ua = navigator.userAgent.toLowerCase();
-
+				console.log(ua)
 				if (ua.match(/iphone/i) == "iphone" || ua.match(/ipad/i) == "ipad") {
-
+					console.log("手机")
 					$('#copy_tip').text("长按框内 > 拷贝 > 打开手淘");
 					var iphoneInfo = ua.match(/iphone os (\d{1,})/i);
 					var iosVersion = iphoneInfo[1];
 					if (iosVersion >= 10 || ua.match(/ipad/i) == 'ipad') {
 						$('.itemCopy').show();
 					}
-
+					console.log("手机")
 				} else {
+					console.log("电脑")
 					$('.itemCopy').show();
 				}
 
