@@ -228,7 +228,8 @@
 				}
 				var url = decodeURIComponent(getParams('url'));
 				try {
-					pic = decodeURIComponent(Base64.decode(getParams('pic')));
+					console.log("pic",getParams('pic'))
+					pic = Base64.decode(decodeURIComponent(getParams('pic')));
 				} catch (error) {
 					console.log("解密出错")
 				}
