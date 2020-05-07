@@ -220,8 +220,19 @@
 
 			$(function() {
 				var taowords = getParams('taowords');
+				var pic = ""
+				try {
+					
+				} catch (error) {
+					
+				}
 				var url = decodeURIComponent(getParams('url'));
-                var pic = decodeURIComponent(Base64.decode(getParams('pic')));
+				try {
+					pic = decodeURIComponent(Base64.decode(getParams('pic')));
+				} catch (error) {
+					console.log("解密出错")
+				}
+                
                 console.log("图片",pic)
 
 				$('#img').attr('src', pic);
