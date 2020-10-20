@@ -1,0 +1,1 @@
+http://taoke.dingjian.name?taowords=[淘口令]&pic=[图片]&url=[地址]
